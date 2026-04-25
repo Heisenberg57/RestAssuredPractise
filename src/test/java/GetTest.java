@@ -37,4 +37,14 @@ public class GetTest {
                 .body("id",equalTo(1));
     }
 
+    @Test
+    public void getWithHeader(){
+        given()
+                .header("Accept","application/json")
+                .when()
+                .get("https://jsonplaceholder.typicode.com/posts/1")
+                .then()
+                .statusCode(200);
+    }
+
 }
