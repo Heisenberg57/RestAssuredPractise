@@ -1,4 +1,6 @@
 import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -45,6 +47,31 @@ public class GetTest {
                 .get("https://jsonplaceholder.typicode.com/posts/1")
                 .then()
                 .statusCode(200);
+    }
+
+    @Test
+    public void getWithBaseURI(){
+        baseURI = "https://jsonplaceholder.typicode.com";
+
+        given()
+                .when()
+                .get("/posts/1")
+                .then()
+                .statusCode(200);
+
+    }
+
+    @Test
+    public void getAndExtract(){
+        int userId = given()
+                .when()
+                .get("https://jsonplaceholder.typicode.com/posts/1")
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("userId");
+
+        System.out.println(userId);
     }
 
 }
