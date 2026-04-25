@@ -26,6 +26,8 @@ public class GetTest {
                 .then()
                 .statusCode(200);
 
+
+
     }
 
     @Test
@@ -63,15 +65,15 @@ public class GetTest {
 
     @Test
     public void getAndExtract(){
-        int userId = given()
+        String theTitle = given()
                 .when()
                 .get("https://jsonplaceholder.typicode.com/posts/1")
                 .then()
                 .statusCode(200)
                 .extract()
-                .path("userId");
+                .path("title");
 
-        System.out.println(userId);
+        System.out.println(theTitle);
     }
 
 }
